@@ -1,0 +1,4 @@
+tfc_sw_ozi:
+    api_url: 'https://api.example.com'
+    api_username: 'your_username'
+    api_key: 'your_api_key'

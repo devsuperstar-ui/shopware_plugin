@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               https://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Register TfcClient -->
+        <service id="TfcSwOzi\Core\Components\TfcClient">
+            <argument type="service" id="http_client" />
+            <argument type="service" id="logger" />
+            <!-- <argument>%tfc_api_url%</argument> -->
+        </service>
+
+        <service id="TfcSwOzi\Core\Components\TfcHelper">
+            <argument type="service" id="parameter_bag" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Components\ModelSelect">
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Service\CustomerService">
+            <argument type="service" id="customer.repository" />
+            <argument type="service" id="TfcSwOzi\Core\Components\TfcClient" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Service\OrderService">
+            <argument type="service" id="order.repository" />
+            <argument type="service" id="TfcSwOzi\Core\Components\TfcClient" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Subscriber\CustomerEventSubscriber">
+            <argument type="service" id="TfcSwOzi\Core\Service\CustomerService" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Subscriber\OrderEventSubscriber">
+            <argument type="service" id="TfcSwOzi\Core\Service\OrderService" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Components\Api\Resource\ArticleService" public="true">
+            <argument type="service" id="product.repository" />
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory" />
+        </service>
+
+        <service id="TfcSwOzi\Core\Content\Car\Definition\CarDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+
+        <service id="TfcSwOzi\Core\Service\CarService">
+            <argument type="service" id="TfcSwOzi\Models\Repository"/>
+        </service>
+        <service id="TfcSwOzi\Core\Controller\CarsController" public="true">
+            <argument type="service" id="TfcSwOzi\Core\Service\CarService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="TfcSwOzi\Models\Repository">
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>
+        </service>
+        
+
+        <service id="TfcSwOzi\Core\Service\ApiClient" public="true">
+            <argument type="service" id="http_client" />
+            <argument type="service" id="logger" />
+            <!-- <argument>%tfc_sw_ozi.api_url%</argument>
+            <argument>%tfc_sw_ozi.api_username%</argument>
+            <argument>%tfc_sw_ozi.api_key%</argument> -->
+        </service>
+
+        <service id="TfcSwOzi\Core\Service\MArticleService" public="true">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="tax.repository"/>
+            <argument type="service" id="product_manufacturer.repository"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+        </service>
+
+        <service id="TfcSwOzi\Core\Controller\ArticleController" public="true">
+            <argument type="service" id="TfcSwOzi\Core\Service\MArticleService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="TfcSwOzi\Core\Service\MCustomerService" public="true">
+            <argument type="service" id="http_client" />
+            <argument type="service" id="customer.repository"/>
+        </service>
+        <service id="TfcSwOzi\Core\Controller\CustomerController" public="true">
+            <argument type="service" id="TfcSwOzi\Core\Service\MCustomerService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="TfcSwOzi\Core\Service\OrderSyncService" public="true">
+            <argument type="service" id="http_client" />
+            <argument type="service" id="order.repository" />
+            <argument type="service" id="logger"/>
+        </service>
+        <service id="TfcSwOzi\Core\Controller\OrderController" public="true">
+            <argument type="service" id="TfcSwOzi\Core\Service\OrderSyncService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Shopware\Core\System\Mail\Service\MailService" public="true">
+        </service>
+        <service id="TfcSwOzi\Core\Controller\OrderStatusController" public="true">
+            <argument type="service" id="Shopware\Core\System\Mail\Service\MailService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- Add more services as needed -->
+    </services>
+</container>

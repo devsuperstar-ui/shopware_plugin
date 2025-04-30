@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+     <card>
+        <title>API Configuration</title>
+        <input-field>
+            <name>apiUrl</name>
+            <type>url</type>
+            <label>API URL</label>
+            <placeholder>https://example.com/api</placeholder>
+            <required>true</required>
+        </input-field>
+    </card>
+    <card>
+        <title>Synchronization Settings</title>
+        <input-field>
+            <name>syncFrequency</name>
+            <type>text</type>
+            <label>Sync Frequency (real_time, hourly, daily)</label>
+            <placeholder>Enter sync frequency</placeholder>
+        </input-field>
+        
+        <input-field>
+            <name>products</name>
+            <type>checkbox</type>
+            <label>products</label>
+            <placeholder>products, categories, orders, users</placeholder>
+        </input-field>
+        <input-field>
+            <name>categories</name>
+            <type>checkbox</type>
+            <label>categories</label>
+            <placeholder>products, categories, orders, users</placeholder>
+        </input-field>
+        <input-field>
+            <name>orders</name>
+            <type>checkbox</type>
+            <label>orders</label>
+            <placeholder>products, categories, orders, users</placeholder>
+        </input-field>
+        <input-field>
+            <name>users</name>
+            <type>checkbox</type>
+            <label>users</label>
+            <placeholder>products, categories, orders, users</placeholder>
+        </input-field>
+    </card>
+    <card>
+        <title>Error Handling</title>
+        <input-field>
+            <name>enableLogging</name>
+            <type>bool</type>
+            <label>Enable Error Logging</label>
+            <placeholder>true</placeholder>
+        </input-field>
+    </card>
+</config>

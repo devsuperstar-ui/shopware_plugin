@@ -1,13 +1,13 @@
 {
-    "name": "COMPOSER-SHORT/COMPOSER-NAME",
-    "description": "REPO-NAME",
+    "name": "vendor/tfc-swozi-plugin",
+    "description": "A plugin to integrate ERP witth Shopware 6",
     "type": "shopware-platform-plugin",
     "license": "MIT",
     "keywords": [
     ],
     "autoload": {
       "psr-4": {
-        "EXT-SHORT\\EXT-NAME\\": "src/"
+        "TfcSwOzi\\": "src/"
       }
     },
     "authors": [
@@ -17,26 +17,26 @@
       }
     ],
     "extra": {
-      "shopware-plugin-class": "EXT-SHORT\\EXT-NAME\\REPO-NAME",
+      "shopware-plugin-class": "TfcSwOzi\\TfcSwOzi",
       "plugin-icon": "src/Resources/config/plugin.png",
       "label": {
-        "de-DE": "REPO-NAME",
-        "en-GB": "REPO-NAME"
+        "de-DE": "TfcSwOzi",
+        "en-GB": "TfcSwOzi"
       },
       "description": {
-        "de-DE": "REPO-NAME",
-        "en-GB": "REPO-NAME"
+        "de-DE": "A plugin to integrate ERP with Shopware 6",
+        "en-GB": "A plugin to integrate ERP with Shopware 6"
       },
       "manufacturerLink": {
-        "de-DE": "https://github.com/FriendsOfShopware/REPO-NAME",
-        "en-GB": "https://github.com/FriendsOfShopware/REPO-NAME"
+        "de-DE": "https://github.com/FriendsOfShopware/tfc-swozi-plugin",
+        "en-GB": "https://github.com/FriendsOfShopware/tfc-swozi-plugin"
       },
       "supportLink": {
-        "de-DE": "https://github.com/FriendsOfShopware/REPO-NAME/issues",
-        "en-GB": "https://github.com/FriendsOfShopware/REPO-NAME/issues"
+        "de-DE": "https://github.com/FriendsOfShopware/tfc-swozi-plugin/issues",
+        "en-GB": "https://github.com/FriendsOfShopware/tfc-swozi-plugin/issues"
       }
     },
     "require": {
-      "shopware/core": "~6.4.0"
+      "shopware/core": "~6.6.10.3"
     }
   }
